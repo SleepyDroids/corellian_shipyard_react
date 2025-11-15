@@ -9,7 +9,7 @@ export default function StarshipCard({ ship }) {
           {ship.name} <br /> {ship.model}
           <br />
           {ship.cost_in_credits === "unknown"
-            ? "infinite"
+            ? "Contact dealer"
             : ship.cost_in_credits}
             {/* need to change the logic here because of my price sort */}
         </p>

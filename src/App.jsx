@@ -27,13 +27,13 @@ function App() {
     beholdStarships();
   }, []);
 
-  function handleChange(e) {
+  function handleInputChange(e) {
     setInput(e.target.value);
   }
 
   const loaded = () => (
     <main>
-      <Header input={input} handleChange={handleChange} ships={starship} />
+      <Header input={input} handleChange={handleInputChange} ships={starship} />
       <Routes>
         <Route path="/" element={<Catalog ships={starship} input={input} />} />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
@@ -45,7 +45,7 @@ function App() {
 
   const loading = () => (
     <main>
-      <Header input={input} handleChange={handleChange} ships={starship} />
+      <Header input={input} handleChange={handleInputChange} ships={starship} />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>
       </div>

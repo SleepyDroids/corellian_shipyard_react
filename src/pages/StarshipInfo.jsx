@@ -10,7 +10,7 @@ export default function StarshipInfo({ ships }) {
     As specs: length, crew, hyperdrive_rating, max_atmosphering_speed, passengers, cargo_capacity
     */
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const {
     name,

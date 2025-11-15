@@ -6,17 +6,16 @@ export default function Sort({ ships }) {
   // need to account for entries that are NaN from data or convert data back to string after sorting by number
   // and then link this to my data displayed on the Catalog (maybe useContext???)
 
-  const shipCredits =
+  // technically only sorting numbers at the moment but nothing is attached to the specific ship data
+  // deal with NaN first, then will probably move this logic to App.jsx for simplicity atm
+  const shipNameAndCost =
     ships &&
     ships.map((ship) => {
-      if (ship.cost_in_credits === NaN) {
-        return;
-      } else {
-        return Number(ship.cost_in_credits);
-      }
+        const newShip = { name: ship.name, cost: ship.cost_in_credits }
+        return newShip;
     });
 
-  console.log(shipCredits);
+  console.log(shipNameAndCost);
 
   function handlePriceSort(e) {
     console.log("handling price sorter");

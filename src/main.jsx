@@ -6,9 +6,9 @@ import App from "./App.jsx";
 import { BrowserRouter, Router } from "react-router";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+// Had to temporarily reduce strictmode as it was doubling my cart quantity and throwing me off
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </StrictMode>
+
 );

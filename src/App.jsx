@@ -14,6 +14,12 @@ import Cart from "./pages/Cart.jsx";
 // Importing routes
 import { Routes, Route, Navigate } from "react-router";
 
+console.log(window.localStorage)
+// testing localStorage
+localStorage.setItem("myCat", "bob")
+const bob = localStorage.getItem("myCat")
+console.log(bob)
+
 function App() {
   // starting the initial state as null to account for the ternary
   // it is a falsy value so it won't render the StarshipCard component unless there is data available to fill the out
@@ -78,7 +84,7 @@ function App() {
           }
         />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} cart={cart} addToCart={handleAddToCart} />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <CartPanel cart={cart} ships={starship} setCart={setCart} />

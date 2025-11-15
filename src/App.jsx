@@ -22,22 +22,40 @@ function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
 
+  // useEffect for API call
   useEffect(() => {
     const beholdStarships = async () => setStarship(await getAllStarships());
     beholdStarships();
   }, []);
 
+  // HANDLERS ***
   function handleInputChange(e) {
     setInput(e.target.value);
   }
 
+  function handleAddToCart(ship) {
+    // logic needs to update cart state by pushing a ship object into cart
+    // like the pokdex morning exercise
+    console.log("adding to cart!");
+    // Take the singular ship object as an argument, making a copy of cart and then "push" that ship object into the cart array
+    setCart([...cart, ship]);
+  }
 
-
+  // LOADED STATE ***
   const loaded = () => (
     <main>
       <Header input={input} handleChange={handleInputChange} ships={starship} />
       <Routes>
-        <Route path="/" element={<Catalog ships={starship} input={input} cart={cart} setCart={setCart}  />} />
+        <Route
+          path="/"
+          element={
+            <Catalog
+              ships={starship}
+              input={input}
+              handleAddToCart={handleAddToCart}
+            />
+          }
+        />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

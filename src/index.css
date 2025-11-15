@@ -7,3 +7,14 @@
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.7rem;
 }
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 250px;
+    padding: 1rem;
+    z-index: 1;
+    background-color: lightgray;
+}

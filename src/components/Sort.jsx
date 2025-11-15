@@ -15,7 +15,7 @@ export default function Sort({ ships }) {
         return newShip;
     });
 
-  console.log(shipNameAndCost);
+  // console.log(shipNameAndCost);
 
   function handlePriceSort(e) {
     console.log("handling price sorter");

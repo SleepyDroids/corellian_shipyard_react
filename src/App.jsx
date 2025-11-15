@@ -14,11 +14,10 @@ import Cart from "./pages/Cart.jsx";
 // Importing routes
 import { Routes, Route, Navigate } from "react-router";
 
-console.log(window.localStorage)
+
 // testing localStorage
-localStorage.setItem("myCat", "bob")
-const bob = localStorage.getItem("myCat")
-console.log(bob)
+// localStorage.setItem("myCat", "bob")
+const initialCart = () => localStorage.getItem('cart') || [];
 
 function App() {
   // starting the initial state as null to account for the ternary
@@ -34,6 +33,11 @@ function App() {
     const beholdStarships = async () => setStarship(await getAllStarships());
     beholdStarships();
   }, []);
+
+  // useEffect for Cart persistance 
+  useEffect(() => {
+// localStorage.setItem('cart', JSON.stringify())
+  }, [cart])
 
   // HANDLERS ***
   function handleInputChange(e) {
@@ -51,27 +55,21 @@ function App() {
         return [...prev, { ...ship, quantity: 1 }];
       }
     });
+localStorage.setItem("current cart", JSON.stringify(cart))
 
-    console.log(cart)
-    // let newCart = [...cart];
-    // let shipQuantity = newCart.find((item) => item.name === ship.name);
-
-    // shipQuantity
-    //   ? shipQuantity.quantity++
-    //   : (shipQuantity = {
-    //       ...ship,
-    //       quantity: 1,
-    //     });
-    // newCart.push(shipQuantity);
-    // setCart(newCart);
-    // logic needs to update cart state by pushing a ship object into cart
-    // Take the singular ship object as an argument, making a copy of cart and then "push" that ship object into the cart array
   }
+
+  function handleClearCart() {
+    setCart([]);
+    localStorage.clear();
+  }
+
+// console.log(window.localStorage)
 
   // LOADED STATE ***
   const loaded = () => (
     <main>
-      <Header input={input} handleChange={handleInputChange} ships={starship} />
+      <Header input={input} handleChange={handleInputChange} ships={starship} setInput={setInput} />
       <Routes>
         <Route
           path="/"
@@ -84,16 +82,16 @@ function App() {
           }
         />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} cart={cart} addToCart={handleAddToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} clearCart={handleClearCart} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <CartPanel cart={cart} ships={starship} setCart={setCart} />
+      <CartPanel cart={cart} ships={starship} clearCart={handleClearCart} />
     </main>
   );
 
   const loading = () => (
     <main>
-      <Header input={input} handleChange={handleInputChange} ships={starship} />
+      <Header input={input} handleChange={handleInputChange} ships={starship} setInput={setInput} />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>
       </div>

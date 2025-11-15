@@ -4,7 +4,7 @@ export async function getAllStarships() {
 
     const response = await fetch("https://swapi.dev/api/starships");
     const data = await response.json();
-    console.log(data.next);
+    // console.log(data.next);
 
     data.results.map((ship) => allShips.push(ship));
 

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
-export default function Cart({ cart, setCart }) {
+export default function Cart({ cart, clearCart }) {
   let navigate = useNavigate();
   const totalQuantity = useMemo(() => {
     return cart.reduce((acc, ship) => acc + ship.quantity, 0);
@@ -27,7 +27,9 @@ export default function Cart({ cart, setCart }) {
 
         <div className="cart-page-footer">
           <p>Cart Total: {totalQuantity || 0}</p>
-          <button onClick={() => setCart([])}>Clear cart</button>
+          {cart.length > 0 && (
+            <button onClick={clearCart}>Clear cart</button>
+          )}
         </div>
         <button onClick={() => navigate(-1)}>Back</button>
       </div>

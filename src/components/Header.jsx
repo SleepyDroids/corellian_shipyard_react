@@ -4,13 +4,13 @@ import Nav from "./Nav";
 
 import { useNavigate } from "react-router";
 
-export default function Header({ input, handleChange, ships }) {
+export default function Header({ input, setInput, handleChange, ships }) {
   const navigate = useNavigate();
 
   return (
     <header>
       <h1 onClick={() => navigate("/")}>Starwars Starships</h1>
-      <Nav />
+      <Nav setInput={setInput} />
       <SearchBar onChange={handleChange} input={input} />
       <Sort ships={ships} />
     </header>

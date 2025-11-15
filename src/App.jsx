@@ -35,9 +35,29 @@ function App() {
   }
 
   function handleAddToCart(ship) {
+    setCart((prev) => {
+      const duplicateIndex = prev.findIndex((item) => item.name === ship.name);
+      if (duplicateIndex !== -1) {
+        const newCart = [...prev];
+        newCart[duplicateIndex].quantity++;
+        return newCart;
+      } else {
+        return [...prev, { ...ship, quantity: 1 }];
+      }
+    });
+    // let newCart = [...cart];
+    // let shipQuantity = newCart.find((item) => item.name === ship.name);
+
+    // shipQuantity
+    //   ? shipQuantity.quantity++
+    //   : (shipQuantity = {
+    //       ...ship,
+    //       quantity: 1,
+    //     });
+    // newCart.push(shipQuantity);
+    // setCart(newCart);
     // logic needs to update cart state by pushing a ship object into cart
     // Take the singular ship object as an argument, making a copy of cart and then "push" that ship object into the cart array
-    setCart([...cart, ship]);
   }
 
   // LOADED STATE ***

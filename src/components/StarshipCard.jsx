@@ -1,4 +1,4 @@
-import StarshipInfo from "./StarshipInfo";
+import StarshipInfo from "../pages/StarshipInfo";
 import { Link } from "react-router";
 
 export default function StarshipCard({ ship }) {

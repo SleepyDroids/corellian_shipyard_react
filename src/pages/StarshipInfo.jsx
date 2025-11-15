@@ -52,7 +52,8 @@ useEffect(() => {
       </ul>
       <p><span className="details-price">Credits:</span> {info.cost_in_credits}</p>
       <button>Add To Cart</button>
-    </div>
+    </div> 
+    <br />
     <button onClickCapture={() => navigate(-1)}>Go back</button>
     </>
   );

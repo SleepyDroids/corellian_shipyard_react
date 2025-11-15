@@ -9,7 +9,7 @@ import Header from "./components/Header.jsx";
 import Catalog from "./components/Catalog.jsx";
 import CartPanel from "./components/CartPanel.jsx";
 import SearchBar from "./components/SearchBar.jsx";
-import StarshipInfo from "./components/StarshipInfo.jsx";
+import StarshipInfo from "./pages/StarshipInfo.jsx";
 
 // Importing routes
 import { Routes, Route, Navigate } from "react-router"

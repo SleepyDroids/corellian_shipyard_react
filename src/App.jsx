@@ -14,10 +14,8 @@ import Cart from "./pages/Cart.jsx";
 // Importing routes
 import { Routes, Route, Navigate } from "react-router";
 
-
-// testing localStorage
-// localStorage.setItem("myCat", "bob")
-const initialCart = () => localStorage.getItem('cart') || [];
+// retrieving cart data from localStorage
+const cartStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 
 function App() {
   // starting the initial state as null to account for the ternary
@@ -26,7 +24,7 @@ function App() {
   const [filteredShips, setFilteredShips] = useState([]);
   const [input, setInput] = useState("");
   const [show, setShow] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(cartStorage);
 
   // useEffect for API call
   useEffect(() => {
@@ -34,10 +32,10 @@ function App() {
     beholdStarships();
   }, []);
 
-  // useEffect for Cart persistance 
+  // useEffect for Cart persistance across user refreshes (unless they click clear cart)
   useEffect(() => {
-// localStorage.setItem('cart', JSON.stringify())
-  }, [cart])
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // HANDLERS ***
   function handleInputChange(e) {
@@ -55,8 +53,7 @@ function App() {
         return [...prev, { ...ship, quantity: 1 }];
       }
     });
-localStorage.setItem("current cart", JSON.stringify(cart))
-
+    localStorage.setItem("current cart", JSON.stringify(cart));
   }
 
   function handleClearCart() {
@@ -64,12 +61,15 @@ localStorage.setItem("current cart", JSON.stringify(cart))
     localStorage.clear();
   }
 
-// console.log(window.localStorage)
-
   // LOADED STATE ***
   const loaded = () => (
     <main>
-      <Header input={input} handleChange={handleInputChange} ships={starship} setInput={setInput} />
+      <Header
+        input={input}
+        handleChange={handleInputChange}
+        ships={starship}
+        setInput={setInput}
+      />
       <Routes>
         <Route
           path="/"
@@ -81,8 +81,20 @@ localStorage.setItem("current cart", JSON.stringify(cart))
             />
           }
         />
-        <Route path="/info/:name" element={<StarshipInfo ships={starship} cart={cart} addToCart={handleAddToCart} />} />
-        <Route path="/cart" element={<Cart cart={cart} clearCart={handleClearCart} />} />
+        <Route
+          path="/info/:name"
+          element={
+            <StarshipInfo
+              ships={starship}
+              cart={cart}
+              addToCart={handleAddToCart}
+            />
+          }
+        />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} clearCart={handleClearCart} />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <CartPanel cart={cart} ships={starship} clearCart={handleClearCart} />
@@ -91,7 +103,12 @@ localStorage.setItem("current cart", JSON.stringify(cart))
 
   const loading = () => (
     <main>
-      <Header input={input} handleChange={handleInputChange} ships={starship} setInput={setInput} />
+      <Header
+        input={input}
+        handleChange={handleInputChange}
+        ships={starship}
+        setInput={setInput}
+      />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>
       </div>

@@ -20,7 +20,7 @@ const totalQuantity = useMemo(() => {
                 {item.name} <br />
                 {item.cost_in_credits === "unknown"
                   ? "Contact dealer"
-                  : item.cost_in_credits}
+                  : Number(item.cost_in_credits * item.quantity)}
                 <br />
                 Quantity: {item.quantity}
               </div>

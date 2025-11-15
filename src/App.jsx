@@ -45,6 +45,8 @@ function App() {
         return [...prev, { ...ship, quantity: 1 }];
       }
     });
+
+    console.log(cart)
     // let newCart = [...cart];
     // let shipQuantity = newCart.find((item) => item.name === ship.name);
 
@@ -75,7 +77,7 @@ function App() {
             />
           }
         />
-        <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
+        <Route path="/info/:name" element={<StarshipInfo ships={starship} cart={cart} addToCart={handleAddToCart} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

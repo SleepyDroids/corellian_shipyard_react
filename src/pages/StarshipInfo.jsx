@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-export default function StarshipInfo({ ships }) {
+export default function StarshipInfo({ ships, cart, addToCart }) {
   /*
     Properties to include from ship object: 
     name, model, starship_class, manufacturer
@@ -50,10 +50,10 @@ useEffect(() => {
         <li><span className="details-text">Cargo Capacity:</span> {info.cargo_capacity}</li>
       </ul>
       <p><span className="details-price">Credits:</span> {info.cost_in_credits}</p>
-      <button>Add To Cart</button>
+      <button onClick={() => addToCart(info)}>Add To Cart</button>
     </div> 
     <br />
-    <button onClickCapture={() => navigate(-1)}>Go back</button>
+    <button onClick={() => navigate(-1)}>Go back</button>
     </>
   );
 }

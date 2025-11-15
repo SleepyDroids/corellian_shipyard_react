@@ -2,8 +2,6 @@ import { useMemo } from "react";
 // useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
 
 export default function CartPanel({ cart, ships, setCart }) {
-  // const totalQuantity = cart && cart.reduce((acc, ship) => {
-  // return acc + ship.quantity, 0})
 
   const totalQuantity = useMemo(() => {
     return cart.reduce((acc, ship) => acc + ship.quantity, 0);

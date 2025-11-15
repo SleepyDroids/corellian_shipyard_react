@@ -1,7 +1,5 @@
 import StarshipCard from "./StarshipCard";
 
-import { Link } from "react-router";
-
 export default function Catalog({ ships, input }) {
   const searchShips = ships.filter((ship) => {
     if (input.toLowerCase() === "") {
@@ -22,8 +20,4 @@ export default function Catalog({ ships, input }) {
       </div>
     </main>
   );
-}
-
-function Test() {
-  
 }

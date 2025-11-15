@@ -8,6 +8,7 @@ export default function SearchBar({ onChange, input }) {
         placeholder="Enter Starship Name"
         onChange={onChange}
         value={input}
+        aria-label="Search for a ship by name"
       />
     </>
   );

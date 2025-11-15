@@ -33,8 +33,7 @@ function App() {
 
   const loaded = () => (
     <main>
-      <Header input={input} handleChange={handleChange} />
-      {/* <SearchBar onChange={handleChange} input={input} /> */}
+      <Header input={input} handleChange={handleChange} ships={starship} />
       <Routes>
         <Route path="/" element={<Catalog ships={starship} input={input} />} />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
@@ -46,7 +45,7 @@ function App() {
 
   const loading = () => (
     <main>
-      <Header input={input} handleChange={handleChange} />
+      <Header input={input} handleChange={handleChange} ships={starship} />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>
       </div>

@@ -11,6 +11,7 @@ export default function StarshipCard({ ship }) {
           {ship.cost_in_credits === "unknown"
             ? "infinite"
             : ship.cost_in_credits}
+            {/* need to change the logic here because of my price sort */}
         </p>
       </div>
     </Link>

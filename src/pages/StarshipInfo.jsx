@@ -40,7 +40,8 @@ useEffect(() => {
     <>
     <div className="shipInfo">
       <h1>{info.name}</h1>
-      <p>{info.model} &middot; {info.manufacturer}</p>
+      <p><span className="details-text">Model:</span> {info.model} <br /> 
+      <span className="details-text">Manufacturer:</span> {info.manufacturer}</p>
       <h2>Specifications</h2>
       <ul>
         <li><span className="details-text">Starship Class:</span> {info.starship_class}</li>

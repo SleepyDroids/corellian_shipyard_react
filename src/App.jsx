@@ -9,6 +9,7 @@ import Header from "./components/Header.jsx";
 import Catalog from "./components/Catalog.jsx";
 import CartPanel from "./components/CartPanel.jsx";
 import StarshipInfo from "./pages/StarshipInfo.jsx";
+import Cart from "./pages/Cart.jsx";
 
 // Importing routes
 import { Routes, Route, Navigate } from "react-router";
@@ -55,6 +56,7 @@ function App() {
           }
         />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <CartPanel cart={cart} ships={starship} setCart={setCart} />

@@ -20,7 +20,7 @@ function App() {
   const [filteredShips, setFilteredShips] = useState([]);
   const [input, setInput] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cart, addToCart] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const beholdStarships = async () => setStarship(await getAllStarships());
@@ -31,11 +31,13 @@ function App() {
     setInput(e.target.value);
   }
 
+
+
   const loaded = () => (
     <main>
       <Header input={input} handleChange={handleInputChange} ships={starship} />
       <Routes>
-        <Route path="/" element={<Catalog ships={starship} input={input} />} />
+        <Route path="/" element={<Catalog ships={starship} input={input} cart={cart} setCart={setCart}  />} />
         <Route path="/info/:name" element={<StarshipInfo ships={starship} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

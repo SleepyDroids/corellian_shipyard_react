@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-import { Link } from "react-router";
-
 export default function StarshipInfo({ ships }) {
   /*
     Properties to include from ship object: 
@@ -39,10 +37,10 @@ useEffect(() => {
   return (
     <>
     <div className="shipInfo">
-      <h1>{info.name}</h1>
+      <h2>{info.name}</h2>
       <p><span className="details-text">Model:</span> {info.model} <br /> 
       <span className="details-text">Manufacturer:</span> {info.manufacturer}</p>
-      <h2>Specifications</h2>
+      <h3>Specifications</h3>
       <ul>
         <li><span className="details-text">Starship Class:</span> {info.starship_class}</li>
         <li><span className="details-text">Length:</span> {info.length} meters</li>

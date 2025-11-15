@@ -1,19 +1,25 @@
 import StarshipInfo from "../pages/StarshipInfo";
 import { Link } from "react-router";
 
-export default function StarshipCard({ ship }) {
+import reactLogo from "../assets/react.svg";
+
+export default function StarshipCard({ ship, addToCart }) {
   return (
-    <Link key={ship.url} to={`/info/${ship.name}`}>
+    <>
       <div className="card">
-        <p>
-          {ship.name} <br /> {ship.model}
-          <br />
-          {ship.cost_in_credits === "unknown"
-            ? "Contact dealer"
-            : ship.cost_in_credits}
-            {/* need to change the logic here because of my price sort */}
-        </p>
+        <Link key={ship.url} to={`/info/${ship.name}`}>
+          <img src={reactLogo} alt={ship.name} />
+          <p>
+            {ship.name} <br /> {ship.model}
+            <br />
+            {ship.cost_in_credits === "unknown"
+              ? "Contact dealer"
+              : ship.cost_in_credits}
+          </p>
+        </Link>
+        <br />
+        <button onClick={() => addToCart(ship)}>Add to cart</button>
       </div>
-    </Link>
+    </>
   );
 }

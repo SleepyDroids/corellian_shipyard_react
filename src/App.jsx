@@ -53,7 +53,13 @@ function App() {
         return [...prev, { ...ship, quantity: 1 }];
       }
     });
-    localStorage.setItem("current cart", JSON.stringify(cart));
+  }
+
+    function handlePriceSort(e) {
+    console.log("handling price sorter");
+    // const l2h = shipCredits.sort((a, b) => a - b);
+    // const h21 = shipCredits.sort((a, b) => b - a);
+
   }
 
   function handleClearCart() {
@@ -69,6 +75,7 @@ function App() {
         handleChange={handleInputChange}
         ships={starship}
         setInput={setInput}
+        sortPrice={handlePriceSort}
       />
       <Routes>
         <Route
@@ -108,6 +115,7 @@ function App() {
         handleChange={handleInputChange}
         ships={starship}
         setInput={setInput}
+        sortPrice={handlePriceSort}
       />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>

@@ -59,6 +59,13 @@ function App() {
     console.log("handling price sorter");
   }
 
+  function handleItemDelete(name) {
+    console.log("removed starship from cart");
+  const removedShip = cart.filter((ship) => ship.name !== name);
+  setCart(removedShip);
+
+  }
+
   function handleClearCart() {
     setCart([]);
     localStorage.clear();
@@ -103,7 +110,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <CartPanel cart={cart} clearCart={handleClearCart} show={show} />
+      <CartPanel cart={cart} clearCart={handleClearCart} show={show} handleRemove={handleItemDelete} />
     </>
   );
 

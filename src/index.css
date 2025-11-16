@@ -1,40 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Gabarito:wght@400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Electrolize&family=Gabarito:wght@400..900&display=swap");
 
 :root {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .fleet-grid {
-    display: grid;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-    grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
-    grid-gap: 1rem;
+  display: grid;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  grid-gap: 1rem;
 }
 
 .card {
-    border: 1px solid black;
+  border: 1px solid black;
 }
 
 #cart-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 250px;
-    height: 250px;
-    padding: 1rem;
-    z-index: 1;
-    background-color: lightgray;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  padding: 1rem;
+  z-index: 1;
+  background-color: lightgray;
 }
 
 .nav-options {
-    display: flex;
-    justify-content: flex-start;
-    gap: 4rem;
-    list-style-type: none;
+  display: flex;
+  justify-content: flex-start;
+  gap: 4rem;
+  list-style-type: none;
 }
 
 :is(h1, h2, h3, .ship-name) {
-    font-family: "Electrolize", sans-serif;
+  font-family: "Electrolize", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+:is(button):hover {
+  cursor: pointer;
 }

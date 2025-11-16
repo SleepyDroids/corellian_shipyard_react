@@ -55,9 +55,8 @@ function App() {
     });
   }
 
-    function handlePriceSort(e) {
+  function handlePriceSort(e) {
     console.log("handling price sorter");
-
   }
 
   function handleClearCart() {
@@ -74,6 +73,8 @@ function App() {
         ships={starship}
         setInput={setInput}
         sortPrice={handlePriceSort}
+        show={show}
+        setShow={setShow}
       />
       <Routes>
         <Route
@@ -102,7 +103,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <CartPanel cart={cart} ships={starship} clearCart={handleClearCart} />
+      <CartPanel cart={cart} clearCart={handleClearCart} show={show} />
     </>
   );
 
@@ -114,6 +115,8 @@ function App() {
         ships={starship}
         setInput={setInput}
         sortPrice={handlePriceSort}
+        show={show}
+        setShow={setShow}
       />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>

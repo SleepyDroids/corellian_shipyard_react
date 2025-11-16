@@ -9,6 +9,7 @@ export default function SearchBar({ onChange, input }) {
         onChange={onChange}
         value={input}
         aria-label="Search for a ship by name"
+        className="ship-search"
       />
     </>
   );

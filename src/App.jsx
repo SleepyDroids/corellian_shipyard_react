@@ -105,7 +105,7 @@ function App() {
         />
         <Route
           path="/cart"
-          element={<Cart cart={cart} clearCart={handleClearCart} />}
+          element={<Cart cart={cart} clearCart={handleClearCart} handleRemove={handleItemDelete} />}
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

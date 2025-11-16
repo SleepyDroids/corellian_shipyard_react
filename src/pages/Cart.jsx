@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
-export default function Cart({ cart, clearCart }) {
+import { X } from "lucide-react"
+
+export default function Cart({ cart, clearCart, handleRemove }) {
   let navigate = useNavigate();
   const totalQuantity = useMemo(() => {
     return cart.reduce((acc, ship) => acc + ship.quantity, 0);
@@ -19,7 +21,9 @@ export default function Cart({ cart, clearCart }) {
                     ? "Contact dealer"
                     : Number(item.cost_in_credits * item.quantity)}
                   <br />
-                  Quantity: {item.quantity}
+                  Quantity: {item.quantity} 
+                  <br />
+                  <button onClick={() => handleRemove(item.name)}><X size={22} /></button>
                 </div>
               );
             })

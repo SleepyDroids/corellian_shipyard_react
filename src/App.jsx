@@ -60,10 +60,8 @@ function App() {
   }
 
   function handleItemDelete(name) {
-    console.log("removed starship from cart");
-  const removedShip = cart.filter((ship) => ship.name !== name);
-  setCart(removedShip);
-
+    const removedShip = cart.filter((ship) => ship.name !== name);
+    setCart(removedShip);
   }
 
   function handleClearCart() {
@@ -101,6 +99,7 @@ function App() {
               ships={starship}
               cart={cart}
               addToCart={handleAddToCart}
+              handleRemove={handleItemDelete}
             />
           }
         />
@@ -110,7 +109,12 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      <CartPanel cart={cart} clearCart={handleClearCart} show={show} handleRemove={handleItemDelete} />
+      <CartPanel
+        cart={cart}
+        clearCart={handleClearCart}
+        show={show}
+        handleRemove={handleItemDelete}
+      />
     </>
   );
 

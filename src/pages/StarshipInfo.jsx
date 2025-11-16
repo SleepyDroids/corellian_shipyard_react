@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 
-export default function StarshipInfo({ ships, cart, addToCart }) {
+import { X } from "lucide-react";
+
+export default function StarshipInfo({ ships, cart, addToCart, handleRemove }) {
   /*
     Properties to include from ship object: 
     name, model, starship_class, manufacturer
@@ -21,39 +23,68 @@ export default function StarshipInfo({ ships, cart, addToCart }) {
     max_atmosphering_speed,
     passengers,
     cargo_capacity,
-    cost_in_credits
+    cost_in_credits,
   } = useParams();
 
-// setting state as an object to represent each individual ship
-const [info, setInfo] = useState({});
+  // setting state as an object to represent each individual ship
+  const [info, setInfo] = useState({});
 
-// find if the name of the starship from the object/data matches the name in the parameter
-useEffect(() => {
+  // find if the name of the starship from the object/data matches the name in the parameter
+  useEffect(() => {
     const starship = ships.find((ship) => ship.name === name);
     // if there is a match, set the state variable to that ship (object)
-    if (starship) { setInfo(starship) }
-}, [info])
+    if (starship) {
+      setInfo(starship);
+    }
+  }, [info]);
 
   return (
     <>
-    <div className="shipInfo">
-      <h2>{info.name}</h2>
-      <p><span className="details-text">Model:</span> {info.model} <br /> 
-      <span className="details-text">Manufacturer:</span> {info.manufacturer}</p>
-      <h3>Specifications</h3>
-      <ul>
-        <li><span className="details-text">Starship Class:</span> {info.starship_class}</li>
-        <li><span className="details-text">Length:</span> {info.length} meters</li>
-        <li><span className="details-text">Crew Required:</span> {info.crew} personnel</li>
-        <li><span className="details-text">Hyperdrive Rating:</span> {info.hyperdrive_rating}</li>
-        <li><span className="details-text">Passengers:</span> {info.passengers} total</li>
-        <li><span className="details-text">Cargo Capacity:</span> {info.cargo_capacity}</li>
-      </ul>
-      <p><span className="details-price">Credits:</span> {info.cost_in_credits}</p>
-      <button onClick={() => addToCart(info)}>Add To Cart</button>
-    </div> 
-    <br />
-    <button onClick={() => navigate(-1)}>Go back</button>
+      <div className="shipInfo">
+        <h2>{info.name}</h2>
+        <p>
+          <span className="details-text">Model:</span> {info.model} <br />
+          <span className="details-text">Manufacturer:</span>{" "}
+          {info.manufacturer}
+        </p>
+        <h3>Specifications</h3>
+        <ul>
+          <li>
+            <span className="details-text">Starship Class:</span>{" "}
+            {info.starship_class}
+          </li>
+          <li>
+            <span className="details-text">Length:</span> {info.length} meters
+          </li>
+          <li>
+            <span className="details-text">Crew Required:</span> {info.crew}{" "}
+            personnel
+          </li>
+          <li>
+            <span className="details-text">Hyperdrive Rating:</span>{" "}
+            {info.hyperdrive_rating}
+          </li>
+          <li>
+            <span className="details-text">Passengers:</span> {info.passengers}{" "}
+            total
+          </li>
+          <li>
+            <span className="details-text">Cargo Capacity:</span>{" "}
+            {info.cargo_capacity}
+          </li>
+        </ul>
+        <p>
+          <span className="details-price">Credits:</span> {info.cost_in_credits}
+        </p>
+        <button onClick={() => addToCart(info)}>Add To Cart</button>
+        {cart.length > 0 && (
+          <button onClick={() => handleRemove(info.name)}>
+            <X size={24} />
+          </button>
+        )}
+      </div>
+      <br />
+      <button onClick={() => navigate(-1)}>Go back</button>
     </>
   );
 }

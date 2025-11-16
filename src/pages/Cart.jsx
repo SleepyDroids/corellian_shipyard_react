@@ -15,7 +15,7 @@ export default function Cart({ cart, clearCart }) {
               return (
                 <div className="cart-page-item" key={item.url}>
                   {item.name} <br />
-                  {item.cost_in_credits === "unknown"
+                  ₹ {item.cost_in_credits === "unknown"
                     ? "Contact dealer"
                     : Number(item.cost_in_credits * item.quantity)}
                   <br />
@@ -26,7 +26,7 @@ export default function Cart({ cart, clearCart }) {
           : "Cart is currently empty."}
 
         <div className="cart-page-footer">
-          <p>Cart Total: {totalQuantity || 0}</p>
+          <p>Starships Total: {totalQuantity || 0}</p>
           {cart.length > 0 && (
             <button onClick={clearCart}>Clear cart</button>
           )}

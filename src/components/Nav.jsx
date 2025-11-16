@@ -10,9 +10,10 @@ function handleCatalogReturn() {
 }
 
     return (
-        <ul>
+        <ul className="nav-options">
             <li onClick={handleCatalogReturn}>Catalog</li>
             <li onClick={() => navigate("/cart")}>Cart</li>
         </ul>
     )
 }
+

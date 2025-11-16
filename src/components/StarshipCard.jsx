@@ -9,10 +9,10 @@ export default function StarshipCard({ ship, addToCart }) {
       <div className="card">
         <Link key={ship.url} to={`/info/${ship.name}`}>
           <img src={reactLogo} alt={ship.name} />
-          <p>
-            {ship.name} <br /> {ship.model}
+          <p><span className="ship-name">{ship.name}</span>
+             <br /> {ship.model}
             <br />
-            {ship.cost_in_credits === "unknown"
+            ₹ {ship.cost_in_credits === "unknown"
               ? "Contact dealer"
               : ship.cost_in_credits}
           </p>

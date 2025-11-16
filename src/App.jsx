@@ -57,8 +57,6 @@ function App() {
 
     function handlePriceSort(e) {
     console.log("handling price sorter");
-    // const l2h = shipCredits.sort((a, b) => a - b);
-    // const h21 = shipCredits.sort((a, b) => b - a);
 
   }
 
@@ -69,7 +67,7 @@ function App() {
 
   // LOADED STATE ***
   const loaded = () => (
-    <main>
+    <>
       <Header
         input={input}
         handleChange={handleInputChange}
@@ -105,11 +103,11 @@ function App() {
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <CartPanel cart={cart} ships={starship} clearCart={handleClearCart} />
-    </main>
+    </>
   );
 
   const loading = () => (
-    <main>
+    <>
       <Header
         input={input}
         handleChange={handleInputChange}
@@ -120,7 +118,7 @@ function App() {
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>
       </div>
-    </main>
+    </>
   );
 
   return starship ? loaded() : loading();

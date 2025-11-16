@@ -80,6 +80,7 @@ function App() {
         sortPrice={handlePriceSort}
         show={show}
         setShow={setShow}
+        cart={cart}
       />
       <Routes>
         <Route
@@ -128,6 +129,7 @@ function App() {
         sortPrice={handlePriceSort}
         show={show}
         setShow={setShow}
+        cart={cart}
       />
       <div className="fleet">
         <p>There is a disturbance in the force, please wait...</p>

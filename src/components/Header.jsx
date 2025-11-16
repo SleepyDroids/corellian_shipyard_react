@@ -1,3 +1,5 @@
+import { useMemo } from "react"
+
 import SearchBar from "./SearchBar";
 import Sort from "./Sort";
 import Nav from "./Nav";
@@ -13,8 +15,13 @@ export default function Header({
   sortPrice,
   show,
   setShow,
+  cart
 }) {
   const navigate = useNavigate();
+
+    const totalQuantity = useMemo(() => {
+    return cart.reduce((acc, ship) => acc + ship.quantity, 0);
+  }, [cart]);
 
   function handleCartToggle() {
     setShow(!show);
@@ -31,7 +38,9 @@ export default function Header({
       <Sort ships={ships} sortPrice={sortPrice} />
 
       {!show ? (
-        <ShoppingCart size={48} onClick={handleCartToggle} />
+        <div className="cart-icon">
+        <ShoppingCart size={48} onClick={handleCartToggle} /> <span className="cart-icon-num">{totalQuantity || 0}</span>
+      </div>
       ) : (
         <X size={48} onClick={handleCartToggle} />
       )}

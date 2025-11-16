@@ -1,13 +1,21 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router";
 
-import { X } from "lucide-react"
+import { X, Minus, Plus } from "lucide-react";
 
 export default function Cart({ cart, clearCart, handleRemove }) {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const totalQuantity = useMemo(() => {
     return cart.reduce((acc, ship) => acc + ship.quantity, 0);
   }, [cart]);
+
+  function handleIncrement(quantity) {
+    console.log(`current quantity: ${quantity}`)
+    if (cart.length > 0 && quantity != 0) {
+      console.log(quantity)
+      return quantity += 1;
+    } 
+  }
 
   return (
     <>
@@ -16,14 +24,22 @@ export default function Cart({ cart, clearCart, handleRemove }) {
           ? cart.map((item) => {
               return (
                 <div className="cart-page-item" key={item.url}>
-                  {item.name} <br />
-                  ₹ {item.cost_in_credits === "unknown"
+                  {item.name} <br />₹{" "}
+                  {item.cost_in_credits === "unknown"
                     ? "Contact dealer"
                     : Number(item.cost_in_credits * item.quantity)}
-                  <br />
-                  Quantity: {item.quantity} 
-                  <br />
-                  <button onClick={() => handleRemove(item.name)}><X size={22} /></button>
+                  <div className="item-qtn">
+                    <button className="btn-qtn">
+                      <Minus size={15} />
+                    </button>
+                    <span className="item-qtn-num">{item.quantity}</span>
+                    <button className="btn-qtn" onClick={() => handleIncrement(item.quantity)}>
+                      <Plus size={15} />
+                    </button>
+                  </div>
+                  <button onClick={() => handleRemove(item.name)}>
+                    <X size={22} />
+                  </button>
                 </div>
               );
             })
@@ -31,9 +47,7 @@ export default function Cart({ cart, clearCart, handleRemove }) {
 
         <div className="cart-page-footer">
           <p>Starships Total: {totalQuantity || 0}</p>
-          {cart.length > 0 && (
-            <button onClick={clearCart}>Clear cart</button>
-          )}
+          {cart.length > 0 && <button onClick={clearCart}>Clear cart</button>}
         </div>
         <button onClick={() => navigate(-1)}>Back</button>
       </div>

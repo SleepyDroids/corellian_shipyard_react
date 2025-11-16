@@ -3,19 +3,17 @@ import { useNavigate } from "react-router";
 
 import { X, Minus, Plus } from "lucide-react";
 
-export default function Cart({ cart, clearCart, handleRemove }) {
+export default function Cart({
+  cart,
+  clearCart,
+  handleRemove,
+  increase,
+  decrease,
+}) {
   const navigate = useNavigate();
   const totalQuantity = useMemo(() => {
     return cart.reduce((acc, ship) => acc + ship.quantity, 0);
   }, [cart]);
-
-  function handleIncrement(quantity) {
-    console.log(`current quantity: ${quantity}`)
-    if (cart.length > 0 && quantity != 0) {
-      console.log(quantity)
-      return quantity += 1;
-    } 
-  }
 
   return (
     <>
@@ -29,11 +27,11 @@ export default function Cart({ cart, clearCart, handleRemove }) {
                     ? "Contact dealer"
                     : Number(item.cost_in_credits * item.quantity)}
                   <div className="item-qtn">
-                    <button className="btn-qtn">
+                    <button className="btn-qtn" onClick={() => decrease(item)}>
                       <Minus size={15} />
                     </button>
                     <span className="item-qtn-num">{item.quantity}</span>
-                    <button className="btn-qtn" onClick={() => handleIncrement(item.quantity)}>
+                    <button className="btn-qtn" onClick={() => increase(item)}>
                       <Plus size={15} />
                     </button>
                   </div>

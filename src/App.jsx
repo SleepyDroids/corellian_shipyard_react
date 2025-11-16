@@ -69,6 +69,44 @@ function App() {
     localStorage.clear();
   }
 
+  function handleIncrement(ship) {
+    setCart((prev) => {
+      const duplicateIndex = prev.findIndex((item) => item.name === ship.name);
+      if (duplicateIndex !== -1) {
+        const newCart = [...prev];
+        newCart[duplicateIndex].quantity++;
+        return newCart;
+      } else {
+        return [...prev, { ...ship, quantity: 1 }];
+      }
+    });
+  }
+
+  function handleDecrement(ship) {
+    setCart((prev) => {
+      const findByIndex = prev.findIndex((item) => item.url === ship.url);
+      // Utilizing the cart's version of the ship (as in state controlled)
+      const foundShip = prev[findByIndex];
+
+      // If quantity is 1 and user click's on the - it should remove the item from the cart entirely
+      // same filter method used in to do list
+      // so a NEW version of the cart with the ship item removed and this becomes the current state
+      if (foundShip.quantity === 1) {
+        return prev.filter((item) => item.url !== ship.url);
+      }
+
+      // Accounting for if the ship quantity is greater than 1 (as in any other case)
+      // so should be similar to increment / addToCart functionality
+      const newCart = [...prev];
+      // Target the specific ship's quantity I am trying to decrement
+      // Okay to mutate here since I am mutating a copy of prev (state) aka newCart
+      // And create a new ship object and override its quantity value
+      // When I return newCart, React notices that it is a new parking space with a new object and that the ship at this particular position has in fact changed
+      newCart[findByIndex] = { ...foundShip, quantity: foundShip.quantity - 1 };
+      return newCart;
+    });
+  }
+
   // LOADED STATE ***
   const loaded = () => (
     <>
@@ -106,7 +144,15 @@ function App() {
         />
         <Route
           path="/cart"
-          element={<Cart cart={cart} clearCart={handleClearCart} handleRemove={handleItemDelete} />}
+          element={
+            <Cart
+              cart={cart}
+              clearCart={handleClearCart}
+              handleRemove={handleItemDelete}
+              increase={handleIncrement}
+              decrease={handleDecrement}
+            />
+          }
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

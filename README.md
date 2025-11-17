@@ -40,7 +40,7 @@ Deployed with Netlify:
   - Quick peek at cart contents without leaving the catalog.
 - **Cart page**:
   - More “traditional” cart view with items stacked as product cards.
-  - Remove button in the top right of each item.
+  - Remove button that appears only when items are in the card.
 
 ### 💾 Persistence with Local Storage
 

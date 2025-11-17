@@ -24,7 +24,7 @@ body {
 header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 30;
   color: #e5e7eb;
   padding: 0.75rem 1.5rem;
   display: flex;
@@ -157,14 +157,16 @@ header > .cart-icon {
   flex-direction: column;
   gap: 0.75rem;
   position: fixed;
-  top: 0;
+  top: 4rem;
   right: 0;
   width: 350px;
   max-width: 90vw;
-  height: 100vh;
+  /* making sure panel takes up full height using calc() */
+  height: calc(100vh - 4rem);
   padding: 1rem 1rem 1.5rem;
   z-index: 20;
   background-color: #020617;
+  color: #f9fafb;
   overflow-y: auto;
   box-shadow: -6px 0 18px rgba(0, 0, 0, 0.7);
   transform: translateX(0);

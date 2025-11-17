@@ -25,7 +25,6 @@ export default function Header({
 
   function handleCartToggle() {
     setShow(!show);
-    console.log(`show variable: ${show}`);
   }
 
   return (
@@ -35,7 +34,7 @@ export default function Header({
       </h1>
       <Nav setInput={setInput} />
       <SearchBar onChange={handleChange} input={input} />
-      <Sort ships={ships} sortPrice={sortPrice} />
+      {/* <Sort ships={ships} sortPrice={sortPrice} /> */}
 
       {!show ? (
         <div className="cart-icon">

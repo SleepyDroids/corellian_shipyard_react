@@ -4,7 +4,10 @@ export default function Catalog({ ships, input, handleAddToCart }) {
 
 
   const searchShips = ships.filter((ship) => {
-    input.toLowerCase() === "" ? true : ship.name.toLowerCase().includes(input.toLowerCase());
+    if (input.toLowerCase() === "") {
+      return true;
+    }
+    return ship.name.toLowerCase().includes(input.toLowerCase());
   });
 
   return (

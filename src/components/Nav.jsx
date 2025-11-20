@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 
 
 export default function Nav({ setInput }) {
-let navigate = useNavigate()
+const navigate = useNavigate()
 
 function handleCatalogReturn() {
     navigate("/")

@@ -20,7 +20,7 @@ const cartStorage = JSON.parse(localStorage.getItem("cart") || "[]");
 function App() {
   // starting the initial state as null to account for the ternary
   // it is a falsy value so it won't render the StarshipCard component unless there is data available to fill the out
-  const [starship, setStarship] = useState(null);
+  const [starship, setStarship] = useState([]);
   const [filteredShips, setFilteredShips] = useState([]);
   const [input, setInput] = useState("");
   const [show, setShow] = useState(false);

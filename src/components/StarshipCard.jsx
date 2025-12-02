@@ -1,4 +1,3 @@
-import StarshipInfo from "../pages/StarshipInfo";
 import { Link } from "react-router";
 
 import reactLogo from "../assets/react.svg";
